@@ -17,8 +17,8 @@ let mixer
 gltfLoader.loadAsync('../xx.glb')
 	.then(gltf => {
  	//...
-  mixer = new THREE.AnimationMixer(gltf.scene)
-  const antion = mixer.clipAction(gltf.animations[0])
+  mixer = new THREE.AnimationMixer(gltf.scene) // 创建动画混合器
+  const antion = mixer.clipAction(gltf.animations[0]) // 传入需要动画剪辑对象, 返回剪辑的参数	
   antion.play()
 })
 

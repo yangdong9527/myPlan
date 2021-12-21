@@ -21,9 +21,9 @@ const initWebGLHook = function () {
   container.appendChild(stats.dom)
 
   const renderer = new THREE.WebGLRenderer({ antialias: true })
-  renderer.setPixelratio = window.devicePixelRatio
+  renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
-  renderer.ouputEncoding = THREE.sRGBEncoding
+  renderer.outputEncoding = THREE.sRGBEncoding
   container.appendChild(renderer.domElement)
 
   const pmremGenerator = new THREE.PMREMGenerator(renderer)
@@ -74,6 +74,7 @@ const initWebGLHook = function () {
     const delta = clock.getDelta()
     mixer.update(delta)
     controls.update()
+    stats.update()
     renderer.render(scene, camera)
   }
 }
