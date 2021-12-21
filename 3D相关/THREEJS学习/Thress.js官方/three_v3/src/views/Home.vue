@@ -1,18 +1,32 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="page-wrapper">
+    目录
+    <ul>
+      <router-link :to="`/${path}`" v-for="path in list" :key="path">
+        <li>{{path}}</li>
+      </router-link>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
 
+const useRouteListHook = () => {
+  const contexts = require.context('../views', true, /\.vue$/)
+  const list: string[] = []
+  contexts.keys().forEach(path => {
+    const name = path.replace(/^\.\/(.*)\.vue$/, '$1')
+    console.log(name)
+    list.push(name)
+  })
+  return list
+}
 export default defineComponent({
   name: 'Home',
-  components: {
-    HelloWorld
+  setup () {
+    const list = useRouteListHook()
+    return { list }
   }
 })
 </script>
